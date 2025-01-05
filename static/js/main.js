@@ -54,6 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
             element.setAttribute('hidden', '');
         },
 
+        showAccordion(element) {
+            UIkit.accordion(element).toggle(1, true);
+            //element.classList.add('uk-open');
+        },
+
+        hideAccordion(element) {
+            element.classList.remove('uk-open');
+        },
+
         async fetchJson(url, options = {}) {
             try {
                 const response = await fetch(url, options);
@@ -92,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 STATE.isSearching = true;
                 utils.showLoading(elements.searchLoading);
 
+                utils.showAccordion(elements.resultsSection);
                 const data = await utils.fetchJson(
                     `${API_ENDPOINTS.search}?query=${encodeURIComponent(query)}`
                 );
