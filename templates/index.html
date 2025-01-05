@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <!-- Add favicon -->
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.16/dist/css/uikit.min.css" />
+
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.21.16/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.21.16/dist/js/uikit-icons.min.js"></script>
 </head>
 <body>
     <header>
@@ -32,39 +38,40 @@
         </section>
 
         <!-- Results Section -->
-        <section class="results-section collapsed" id="results-section">
-            <h2 id="results-heading">
-                Search Results
-                <span class="toggle-icon">▼</span>
-            </h2>
-            <div class="loading-indicator" id="search-loading" role="status">
-                <span class="spinner"></span>
-                <span>Loading...</span>
-            </div>
-            <div class="results-content">
-                <div class="table-responsive">
-                    <table id="results-table" role="grid">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Preview</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Author</th>
-                                <th scope="col">Publisher</th>
-                                <th scope="col">Year</th>
-                                <th scope="col">Language</th>
-                                <th scope="col">Format</th>
-                                <th scope="col">Size</th>
-                                <th scope="col">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Search results will be injected here -->
-                        </tbody>
-                    </table>
+        <ul uk-accordion id="results-section">
+            <li>
+            <a class="uk-accordion-title" href><h1 class="uk-heading-small">Search Results</h1></a>
+            <div class="uk-accordion-content">
+                <div id="search-loading" class="uk-flex uk-flex-center" role="status" hidden>
+                    <div uk-spinner="ratio: 2"></div>
+                    <span>Loading...</span>
+                </div>
+                <div class="results-content">
+                    <div class="uk-overflow-auto">
+                        <table id="results-table" class="uk-table uk-table-hover uk-table-divider" role="grid">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Preview</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Author</th>
+                                    <th scope="col">Publisher</th>
+                                    <th scope="col">Year</th>
+                                    <th scope="col">Language</th>
+                                    <th scope="col">Format</th>
+                                    <th scope="col">Size</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Search results will be injected here -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </section>
+            </li>
+        </ul>
 
         <!-- Book Details Modal -->
         <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true">

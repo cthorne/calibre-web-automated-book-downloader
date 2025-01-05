@@ -47,11 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
         },
 
         showLoading(element) {
-            element.style.display = 'block';
+            element.removeAttribute('hidden');
         },
 
         hideLoading(element) {
-            element.style.display = 'none';
+            element.setAttribute('hidden', '');
         },
 
         async fetchJson(url, options = {}) {
@@ -90,7 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             try {
                 STATE.isSearching = true;
-                elements.resultsSection.classList.remove('collapsed');
                 utils.showLoading(elements.searchLoading);
 
                 const data = await utils.fetchJson(
@@ -263,7 +262,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
                 
                 modal.close();
-                elements.resultsSection.classList.add('collapsed');
                 status.fetch();
             } catch (error) {
                 console.error('Download error:', error);
@@ -403,11 +401,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const query = elements.searchInput.value.trim();
                 if (query) search.performSearch(query);
             }
-        });
-
-        // Results section toggle
-        elements.resultsHeading.addEventListener('click', () => {
-            elements.resultsSection.classList.toggle('collapsed');
         });
 
         // Modal close on overlay click
